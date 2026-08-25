@@ -77,11 +77,23 @@ def test_unified_client_always_requires_api_key(test_server_port, test_managemen
 
 def test_client_requires_management_api_key_for_management_endpoints(test_management_server_port, monkeypatch):
     monkeypatch.delenv("XAI_MANAGEMENT_KEY", raising=False)
+    monkeypatch.delenv("XAI_MANAGEMENT_API_KEY", raising=False)
     client = Client(api_key=server.API_KEY, api_host=f"localhost:{test_management_server_port}")
     with pytest.raises(ValueError) as e:
         client.collections.list()
 
     assert e.value.args[0] == "Please provide a management API key."
+
+
+def test_estate_management_env_enables_collections(test_server_port, test_management_server_port, monkeypatch):
+    monkeypatch.delenv("XAI_MANAGEMENT_KEY", raising=False)
+    monkeypatch.setenv("XAI_MANAGEMENT_API_KEY", server.MANAGEMENT_API_KEY)
+    client = Client(
+        api_key=server.API_KEY,
+        api_host=f"localhost:{test_server_port}",
+        management_api_host=f"localhost:{test_management_server_port}",
+    )
+    assert client.collections.list() is not None
 
 
 def test_retries():

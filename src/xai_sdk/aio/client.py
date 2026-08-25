@@ -6,6 +6,7 @@ import grpc
 from ..client import (
     BaseClient,
     create_channel_credentials,
+    management_key_from_env,
 )
 from ..interceptors import (
     UnaryStreamAuthAioInterceptor,
@@ -52,7 +53,7 @@ class Client(BaseClient):
         )
 
         # Management channel is optional, we perform further checks in the collections client
-        management_api_key = management_api_key or os.getenv("XAI_MANAGEMENT_KEY")
+        management_api_key = management_api_key or management_key_from_env()
         self._management_channel = (
             self._make_grpc_channel(
                 management_api_key,

@@ -15,6 +15,8 @@
 
 <br>
 
+> **INFRAGENS / coagent.** This is the CutNBreak checkout of the official SDK, seated under `001_core` and wielded by coagent. Estate overlay (git remotes, env names, console-custody boundary): [`000_COAGENT.md`](./000_COAGENT.md). The import remains `xai_sdk`.
+
 The xAI Python SDK is a gRPC-based Python library for interacting with xAI's APIs. Built for Python 3.10 and above, it offers both **synchronous** and **asynchronous** clients.
 
 Whether you're generating text, images, videos, or structured outputs, the xAI SDK is designed to be intuitive, robust, and developer-friendly.

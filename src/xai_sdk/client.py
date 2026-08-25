@@ -2,6 +2,7 @@
 
 import abc
 import json
+import os
 import sys
 from typing import Any, Optional, Sequence
 
@@ -10,6 +11,17 @@ import grpc
 from .__about__ import __version__
 
 USER_AGENT = f"XaiSdk/{__version__}"
+
+
+def management_key_from_env() -> Optional[str]:
+    """Resolve the Management API key from the process environment.
+
+    Estate-canonical name is ``XAI_MANAGEMENT_API_KEY`` (INFRAGENS / coagent
+    ``.env``). The vendor name ``XAI_MANAGEMENT_KEY`` remains valid. Inference
+    ``XAI_API_KEY`` is never substituted.
+    """
+    return os.getenv("XAI_MANAGEMENT_API_KEY") or os.getenv("XAI_MANAGEMENT_KEY")
+
 
 # Retries if the service returns an UNAVAILABLE error.
 _DEFAULT_SERVICE_CONFIG_JSON = json.dumps(
@@ -73,8 +85,8 @@ class BaseClient(abc.ABC):
         Args:
             api_key: API key to use. If unspecified, the API key is read from the `XAI_API_KEY`
                 environment variable.
-            management_api_key: Management API key to use. If unspecified, the Management API key is read from the
-                `XAI_MANAGEMENT_KEY` environment variable.
+            management_api_key: Management API key to use. If unspecified, the Management API key is read from
+                `XAI_MANAGEMENT_API_KEY` (estate-canonical) or `XAI_MANAGEMENT_KEY` (vendor).
             api_host: Hostname of the API server.
             management_api_host: Hostname of the Management API server.
             metadata: Metadata to be sent with each gRPC request. Each tuple should contain a
