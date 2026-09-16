@@ -2,15 +2,15 @@
 
 ## METADATA
 
-- FILE := `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_nlcii\001_substrate_inference\001_core\xai-sdk-python\000_COAGENT.md` — estate overlay for this checkout.
+- FILE := `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_nlcii\001_substrate_inference\001_base_model\xai-sdk-python\000_COAGENT.md` — estate overlay for this checkout.
 - SCOPE := this repository only — official `xai-sdk` 1.19.0 source plus the INFRAGENS/coagent overlay (this file, estate env alias, git binding).
 - ROLE := constitutive-provider SDK checkout. Coagent WIELDS this; this package is not an orchestrator, not a second coagent, and not console-custody authority.
-- ASSOC := `..\000_COAGENT.md` (001_core tier — console custody + employed `grok-4.6`) · `..\xai\org_access\org_access_state.md` (live Management API catalog) · `001_DIGITAL\006_web_ops\xai\shared\client\management_client.py` (thin REST key client) · `C:\INFRAGENS_v0.1.0\HANDOVER_GROK-4.6_CUTOVER.md` · `003_PHYSICAL\001_user\001_coagent\coagent\` (wielding NLCII; `providers/xai`, settings `INTERFACE_*`).
+- ASSOC := `..\000_COAGENT.md` (001_base_model tier — console custody + employed `grok-4.6`) · `..\..\002_support_models\xai\01_org_access\org_access.md` (live Management API catalog) · `001_DIGITAL\006_web_ops\xai\shared\client\management_client.py` (thin REST key client) · `C:\INFRAGENS_v0.1.0\HANDOVER_GROK-4.6_CUTOVER.md` · `003_PHYSICAL\001_user\001_coagent\coagent\` (wielding NLCII; `providers/xai`, settings `INTERFACE_*`).
 
 ## LINEAGE
 
 - Parent chain upward to the fleet root (S.root), hop by hop:
-  - `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_nlcii\001_substrate_inference\001_core\000_COAGENT.md`
+  - `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_nlcii\001_substrate_inference\001_base_model\000_COAGENT.md`
   - `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_nlcii\001_substrate_inference\000_COAGENT.md`
   - `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_nlcii\000_COAGENT.md`
   - `C:\INFRAGENS_v0.1.0\infragens\001_DIGITAL\000_COAGENT.md`
@@ -22,14 +22,14 @@
 
 ### What this is
 
-Official xAI Python SDK (`xai-sdk`, Apache-2.0, import `xai_sdk`) forked to `CutNBreak/xai-sdk-python` and seated under `001_core` because it is materiel of the constitutive provider. gRPC client: chat, image, video, files, collections, models, tokenize, batch, auth. Sync `Client` and async `AsyncClient`.
+Official xAI Python SDK (`xai-sdk`, Apache-2.0, import `xai_sdk`) forked to `CutNBreak/xai-sdk-python` and seated under `001_base_model` because it is materiel of the constitutive provider. gRPC client: chat, image, video, files, collections, models, tokenize, batch, auth. Sync `Client` and async `AsyncClient`.
 
 Import name, PyPI identity, and proto bindings stay `xai_sdk`. Do not rename the package to look more INFRAGENS — the name is the vendor interface contract.
 
 ### How it sits in INFRAGENS / coagent
 
 - **Wield, do not become.** `s := materiel(coagent)`. Coagent talks to `grok-4.6` through several transports (HTTP Responses, Grok CLI, this gRPC SDK). This tree is the estate-owned first-party SDK so we can patch, pin, and read source without leaving the fleet.
-- **Not console-custody authority.** Keys, billing, team ACLs, spend live in `001_core` + `.env` + the REST Management API (`https://management-api.x.ai`). Default reach for that REST surface is python/`httpx` and `management_client.py`. The SDK's `management_api_key` channel is **collections gRPC**, not the REST key/billing catalog.
+- **Not console-custody authority.** Console activation stays in the `001_base_model` charter; custody records live in `..\..\002_support_models\xai\01_org_access\org_access.md`, credentials in `.env`, and live keys/billing/team ACLs/spend in the REST Management API (`https://management-api.x.ai`). Default reach for that REST surface is python/`httpx` and `management_client.py`. The SDK's `management_api_key` channel is **collections gRPC**, not the REST key/billing catalog.
 - **Employment authority** stays `settings.INTERFACE_MODEL` / `INTERFACE_PROVIDER` / `SANDBOX_CONFIGS` and `HANDOVER_GROK-4.6_CUTOVER.md`. Do not flip `INTERFACE_*` from this tree.
 
 ### Auth split (hard)
@@ -47,6 +47,9 @@ Load keys from `C:\INFRAGENS_v0.1.0\.env`. Do not print secrets. Do not commit `
 
 ### Git binding (this is the coherence contract)
 
+Canonical path is this `001_base_model` checkout on `main`. The root registration evidence (2026-09-14) records gitlink `5cd8e747f3a41ea12fe770f1d14ef3c5024d7f3b`. The sibling support path `..\..\002_support_models\xai\05_sdk\xai-sdk-python` is a compatibility symlink here, not a second working tree. Coagent's `providers/xai/xai_sdk_overlay.py` now targets `001_base_model`; package import and employment are unchanged.
+
+
 - **origin** := `https://github.com/CutNBreak/xai-sdk-python` — estate fork; this checkout's push target.
 - **upstream** := `https://github.com/xai-org/xai-sdk-python.git` — vendor; fetch/rebase only. Do not push estate commits to xai-org.
 - **superproject** := `C:\INFRAGENS_v0.1.0` (`CutNBreak/INFRAGENS_v0.1.0`) registers this path as a **submodule** (mode 160000). Do not copy SDK contents into the monorepo. Do not leave this as an unregistered nested `.git`.
@@ -61,5 +64,7 @@ Load keys from `C:\INFRAGENS_v0.1.0\.env`. Do not print secrets. Do not commit `
 - Do not promote this checkout into an orchestrator, sandbox lane, or second Interface LLM.
 
 ## CHANGE LOG
+
+- 2026-09-14 — Aligned canonical base-tier SDK and support compatibility link with root product registration; preserved SDK and credential boundaries.
 
 - 2026-08-25 — Estate overlay installed: this charter, `management_key_from_env` (accepts `XAI_MANAGEMENT_API_KEY`), `upstream` remote, and submodule registration under INFRAGENS_v0.1.0, because a vendor checkout that is neither informed nor gitlinked is invisible to successors and incoherent with the superproject.
