@@ -28,7 +28,7 @@ Import name, PyPI identity, and proto bindings stay `xai_sdk`. Do not rename the
 
 ### How it sits in INFRAGENS / coagent
 
-- **Wield, do not become.** `s := materiel(coagent)`. Coagent talks to `grok-4.6` through several transports (HTTP Responses, Grok CLI, this gRPC SDK). This tree is the estate-owned first-party SDK so we can patch, pin, and read source without leaving the fleet.
+- **Wield, do not become.** `s := materiel(coagent)`. Coagent talks to `grok-4.6` through several transports (HTTP Responses, Grok Build, this gRPC SDK). This tree is the estate-owned first-party SDK so we can patch, pin, and read source without leaving the fleet.
 - **Not console-custody authority.** Console activation stays in the `001_base_model` charter; custody records live in `..\..\002_support_models\xai\01_org_access\org_access.md`, credentials in `.env`, and live keys/billing/team ACLs/spend in the REST Management API (`https://management-api.x.ai`). Default reach for that REST surface is python/`httpx` and `management_client.py`. The SDK's `management_api_key` channel is **collections gRPC**, not the REST key/billing catalog.
 - **Employment authority** stays `settings.INTERFACE_MODEL` / `INTERFACE_PROVIDER` / `SANDBOX_CONFIGS` and `HANDOVER_GROK-4.6_CUTOVER.md`. Do not flip `INTERFACE_*` from this tree.
 
