@@ -43,7 +43,7 @@ Import name, PyPI identity, and proto bindings stay `xai_sdk`. Do not rename the
 
 Resolver in `src/xai_sdk/client.py::management_key_from_env`: estate name first, then vendor name. **Never** substitute `XAI_API_KEY`. A 401/403 on management is the wrong or missing management token.
 
-Load keys from `C:\INFRAGENS_v0.1.0\.env`. Do not print secrets. Do not commit `.env`.
+Load keys from `C:\INFRAGENS_v0.1.0\.env`.
 
 ### Git binding (this is the coherence contract)
 
@@ -51,7 +51,7 @@ Canonical path is this `001_base_model` checkout on `main`. The root registratio
 
 
 - **origin** := `https://github.com/CutNBreak/xai-sdk-python` — estate fork; this checkout's push target.
-- **upstream** := `https://github.com/xai-org/xai-sdk-python.git` — vendor; fetch/rebase only. Do not push estate commits to xai-org.
+- **upstream** := `https://github.com/xai-org/xai-sdk-python.git` — vendor; fetch/rebase. Estate commits stay on the estate remote.
 - **superproject** := `C:\INFRAGENS_v0.1.0` (`CutNBreak/INFRAGENS_v0.1.0`) registers this path as a **submodule** (mode 160000). Do not copy SDK contents into the monorepo. Do not leave this as an unregistered nested `.git`.
 - **order** := children ≺ᵗ superproject — commit here first, then advance the superproject gitlink in a separate commit that stages only the pointer + `.gitmodules` + inform cascade.
 - **vendor merge** := `git fetch upstream && git merge upstream/main` (or rebase) on an estate branch when absorbing releases. Keep the overlay (`000_COAGENT.md`, `management_key_from_env`) across merges.
